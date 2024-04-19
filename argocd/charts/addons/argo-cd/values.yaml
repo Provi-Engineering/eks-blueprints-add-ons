@@ -51,10 +51,30 @@ server:
       annotations:
         prometheus.io/scrape: true
   service:
-    type: LoadBalancer
+    type: ClusterIP
     annotations:
-      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-      service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+      service.beta.kubernetes.io/aws-load-balancer-scheme
+#  ingress:
+#    enabled: true
+#    ingressClassName: alb
+#    hostname: argocd.${domain}
+#    annotations:
+#      alb.ingress.kubernetes.io/backend-protocol: HTTPS
+#      alb.ingress.kubernetes.io/certificate-arn: ${cert_arn}
+#      alb.ingress.kubernetes.io/healthcheck-path: /healthz
+#      alb.ingress.kubernetes.io/healthcheck-protocol: HTTPS
+#      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+#      alb.ingress.kubernetes.io/scheme: internal
+#      alb.ingress.kubernetes.io/ssl-redirect: "443"
+#      alb.ingress.kubernetes.io/tags: Name=argocd-alb
+#      alb.ingress.kubernetes.io/target-type: ip
+#      external-dns.alpha.kubernetes.io/hostname: argocd.${domain}
+#      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+#      provi.repository: https://github.com/Provi-Engineering/provi-eks-blueprints
+#      provi.slack: talk-devops
+#      external-dns.alpha.kubernetes.io/ttl: "10"
+#      external-dns.alpha.kubernetes.io/aws-weight: "${aws_weight}"
+#      external-dns.alpha.kubernetes.io/set-identifier: ${cluster_name}
 
 configs:
   repositories:
@@ -64,6 +84,12 @@ configs:
       type: helm
       url: public.ecr.aws
       enableOCI: 'true'
+#    provi-helm-charts:
+#      url: https://provi-helm-charts.pvfog.org
+#      name: provi-helm-charts
+#      type: helm
+#    provi-engineering:
+#      url: git@github.com:Provi-Engineering
   cm:
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |
