@@ -53,7 +53,7 @@ server:
   service:
     type: ClusterIP
     annotations:
-      service.beta.kubernetes.io/aws-load-balancer-scheme
+      service.beta.kubernetes.io/aws-load-balancer-scheme: internal
 #  ingress:
 #    enabled: true
 #    ingressClassName: alb
