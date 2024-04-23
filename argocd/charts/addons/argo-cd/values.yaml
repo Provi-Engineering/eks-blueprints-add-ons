@@ -91,7 +91,6 @@ configs:
 #    provi-engineering:
 #      url: git@github.com:Provi-Engineering
   cm:
-    url: 'https://argocd.{{metadata.annotations.eks_cluster_domain}}'
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |
       - kinds:
