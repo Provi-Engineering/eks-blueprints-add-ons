@@ -12,7 +12,6 @@ spec:
         generators:
           - clusters:
               values:
-                url: 'https://argocd.{{metadata.annotations.eks_cluster_domain}}'
                 addonChart: argo-cd
                 # anything not staging or prod use this version
                 addonChartVersion: 6.6.0

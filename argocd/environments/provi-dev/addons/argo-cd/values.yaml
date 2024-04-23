@@ -1,0 +1,4 @@
+# Helm chart values
+configs:
+  cm:
+    url: https://argocd.pvfog.org 
