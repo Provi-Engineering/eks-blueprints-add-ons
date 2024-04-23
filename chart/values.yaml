@@ -6,7 +6,7 @@ account: ''
 clusterName: ''
 destinationServer: ''
 argoNamespace: ''
-argoProject: ''
+argoProject: 'addons'
 
 # Agones Values
 agones:
