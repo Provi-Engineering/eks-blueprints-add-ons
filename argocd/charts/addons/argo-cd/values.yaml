@@ -64,26 +64,26 @@ configs:
       url: public.ecr.aws
       enableOCI: 'true'
 
-#  rbac:
-#    policy.default: "role:dev"
-#    policy.csv: |
-#      p, role:dev, applications, get, default/*, allow
-#      p, role:dev, applications, create, default/*, allow
-#      p, role:dev, applications, update, default/*, allow
-#      p, role:dev, applications, delete, default/*, allow
-#      p, role:dev, applications, sync, default/*, allow
-#      p, role:dev, applications, override, default/*, allow
-#      p, role:dev, applications, action/*, default/*, allow
-#      p, role:dev, exec, create, default/*, allow
-#      p, role:dev, certificates, get, default/*, allow
-#      p, role:dev, clusters, get, default/*, allow
-#      p, role:dev, repositories, get, default/*, allow
-#      p, role:dev, projects, get, default/*, allow
-#      p, role:dev, accounts, get, default/*, allow
-#      p, role:dev, gpgkeys, get, default/*, allow
-#      p, role:dev, logs, get, default/*, allow
-#
-#      g, Provi-Engineering:DevOps, role:admin
+  rbac:
+    policy.default: "role:dev"
+    policy.csv: |
+      p, role:dev, applications, get, default/*, allow
+      p, role:dev, applications, create, default/*, allow
+      p, role:dev, applications, update, default/*, allow
+      p, role:dev, applications, delete, default/*, allow
+      p, role:dev, applications, sync, default/*, allow
+      p, role:dev, applications, override, default/*, allow
+      p, role:dev, applications, action/*, default/*, allow
+      p, role:dev, exec, create, default/*, allow
+      p, role:dev, certificates, get, default/*, allow
+      p, role:dev, clusters, get, default/*, allow
+      p, role:dev, repositories, get, default/*, allow
+      p, role:dev, projects, get, default/*, allow
+      p, role:dev, accounts, get, default/*, allow
+      p, role:dev, gpgkeys, get, default/*, allow
+      p, role:dev, logs, get, default/*, allow
+
+      g, Provi-Engineering:DevOps, role:admin
 
   cm:
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
