@@ -54,27 +54,6 @@ server:
     type: ClusterIP
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-#  ingress:
-#    enabled: true
-#    ingressClassName: alb
-#    hostname: argocd.${domain}
-#    annotations:
-#      alb.ingress.kubernetes.io/backend-protocol: HTTPS
-#      alb.ingress.kubernetes.io/certificate-arn: ${cert_arn}
-#      alb.ingress.kubernetes.io/healthcheck-path: /healthz
-#      alb.ingress.kubernetes.io/healthcheck-protocol: HTTPS
-#      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
-#      alb.ingress.kubernetes.io/scheme: internal
-#      alb.ingress.kubernetes.io/ssl-redirect: "443"
-#      alb.ingress.kubernetes.io/tags: Name=argocd-alb
-#      alb.ingress.kubernetes.io/target-type: ip
-#      external-dns.alpha.kubernetes.io/hostname: argocd.${domain}
-#      nginx.ingress.kubernetes.io/proxy-body-size: "0"
-#      provi.repository: https://github.com/Provi-Engineering/provi-eks-blueprints
-#      provi.slack: talk-devops
-#      external-dns.alpha.kubernetes.io/ttl: "10"
-#      external-dns.alpha.kubernetes.io/aws-weight: "${aws_weight}"
-#      external-dns.alpha.kubernetes.io/set-identifier: ${cluster_name}
 
 configs:
   repositories:
@@ -84,33 +63,27 @@ configs:
       type: helm
       url: public.ecr.aws
       enableOCI: 'true'
-#    provi-helm-charts:
-#      url: https://provi-helm-charts.pvfog.org
-#      name: provi-helm-charts
-#      type: helm
-#    provi-engineering:
-#      url: git@github.com:Provi-Engineering
 
-  rbac:
-    policy.default: "role:dev"
-    policy.csv: |
-      p, role:dev, applications, get, default/*, allow
-      p, role:dev, applications, create, default/*, allow
-      p, role:dev, applications, update, default/*, allow
-      p, role:dev, applications, delete, default/*, allow
-      p, role:dev, applications, sync, default/*, allow
-      p, role:dev, applications, override, default/*, allow
-      p, role:dev, applications, action/*, default/*, allow
-      p, role:dev, exec, create, default/*, allow
-      p, role:dev, certificates, get, default/*, allow
-      p, role:dev, clusters, get, default/*, allow
-      p, role:dev, repositories, get, default/*, allow
-      p, role:dev, projects, get, default/*, allow
-      p, role:dev, accounts, get, default/*, allow
-      p, role:dev, gpgkeys, get, default/*, allow
-      p, role:dev, logs, get, default/*, allow
-
-      g, Provi-Engineering:DevOps, role:admin
+#  rbac:
+#    policy.default: "role:dev"
+#    policy.csv: |
+#      p, role:dev, applications, get, default/*, allow
+#      p, role:dev, applications, create, default/*, allow
+#      p, role:dev, applications, update, default/*, allow
+#      p, role:dev, applications, delete, default/*, allow
+#      p, role:dev, applications, sync, default/*, allow
+#      p, role:dev, applications, override, default/*, allow
+#      p, role:dev, applications, action/*, default/*, allow
+#      p, role:dev, exec, create, default/*, allow
+#      p, role:dev, certificates, get, default/*, allow
+#      p, role:dev, clusters, get, default/*, allow
+#      p, role:dev, repositories, get, default/*, allow
+#      p, role:dev, projects, get, default/*, allow
+#      p, role:dev, accounts, get, default/*, allow
+#      p, role:dev, gpgkeys, get, default/*, allow
+#      p, role:dev, logs, get, default/*, allow
+#
+#      g, Provi-Engineering:DevOps, role:admin
 
   cm:
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
