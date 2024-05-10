@@ -72,20 +72,21 @@ spec:
                     alb.ingress.kubernetes.io/ssl-redirect: "443"
                     alb.ingress.kubernetes.io/tags: Name=argocd-alb
                     alb.ingress.kubernetes.io/target-type: ip
-                    external-dns.alpha.kubernetes.io/hostname: "argocd.{{metadata.annotations.domain}}"
+                    external-dns.alpha.kubernetes.io/hostname: "argocd.{{metadata.annotations.eks_cluster_domain}}"
                     nginx.ingress.kubernetes.io/proxy-body-size: "0"
                     provi.repository: https://github.com/Provi-Engineering/provi-eks-blueprints
                     provi.slack: talk-devops
                     external-dns.alpha.kubernetes.io/ttl: "10"
                     external-dns.alpha.kubernetes.io/aws-weight: "{{metadata.annotations.route53_weight}}"
                     external-dns.alpha.kubernetes.io/set-identifier: "{{metadata.annotations.cluster_name}}"
+                    foo: bar
 
       destination:
         namespace: '{{values.addonChartRepositoryNamespace}}'
         name: '{{name}}'
       syncPolicy:
-        automated:
-          prune: false
+        #automated:
+        #  prune: false
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true  # Big CRDs.
