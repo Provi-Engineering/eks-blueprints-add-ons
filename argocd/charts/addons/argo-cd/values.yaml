@@ -63,6 +63,26 @@ configs:
       type: helm
       url: public.ecr.aws
       enableOCI: 'true'
+    provi-helm-charts:
+      url: https://provi-helm-charts.pvfog.org
+      name: provi-helm-charts
+      type: helm
+    keda-core:
+      url: https://kedacore.github.io/charts
+      name: kedacore
+      type: helm
+    sumologic:
+      url: https://sumologic.github.io/sumologic-kubernetes-collection
+      name: sumologic
+      type: helm
+    datadog:
+      url: https://helm.datadoghq.com
+      name: datadog
+      type: helm
+  secret:
+    extra:
+      dex.github.clientID: "${argocd_github_client_id}"
+      dex.github.clientSecret: "${argocd_github_client_secret}"
 
   rbac:
     policy.default: "role:dev"
@@ -86,6 +106,18 @@ configs:
       g, Provi-Engineering:DevOps, role:admin
 
   cm:
+    url: https://argocd.${domain}
+    dex.config: |
+      connectors:
+        - type: github
+          id: github
+          name: GitHub
+          config:
+            clientID: $dex.github.clientID
+            clientSecret: $dex.github.clientSecret
+            orgs:
+            - name: Provi-Engineering
+
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |
       - kinds:
@@ -229,7 +261,25 @@ extraObjects:
       name: default
       namespace: {{ $.Release.Namespace | quote }}
       annotations:
-        source: gitops-brige
+        source: gitops-bridge
+    spec:
+      clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: '*'
+          name: '*'
+          server: '*'
+  - |
+    apiVersion: argoproj.io/v1alpha1
+    kind: AppProject
+    metadata:
+      name: addons
+      namespace: {{ $.Release.Namespace | quote }}
+      annotations:
+        source: gitops-bridge
     spec:
       clusterResourceWhitelist:
       - group: '*'
