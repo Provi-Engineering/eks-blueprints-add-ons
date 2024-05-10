@@ -106,17 +106,6 @@ configs:
       g, Provi-Engineering:DevOps, role:admin
 
   cm:
-    dex.config: |
-      connectors:
-        - type: github
-          id: github
-          name: GitHub
-          config:
-            clientID: $dex.github.clientID
-            clientSecret: $dex.github.clientSecret
-            orgs:
-            - name: Provi-Engineering
-
     application.resourceTrackingMethod: 'annotation' #use annotation for tracking required for Crossplane
     resource.exclusions: |
       - kinds:

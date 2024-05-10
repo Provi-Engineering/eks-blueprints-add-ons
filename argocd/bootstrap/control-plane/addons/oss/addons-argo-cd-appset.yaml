@@ -80,8 +80,20 @@ spec:
                     external-dns.alpha.kubernetes.io/aws-weight: "{{metadata.annotations.route53_weight}}"
                     external-dns.alpha.kubernetes.io/set-identifier: "{{metadata.annotations.cluster_name}}"
                     foo: bar
-              cm:
-                url: "https://argocd.{{eks_cluster_domain}}"
+              configs:
+                cm:
+                  url: "https://argocd.{{eks_cluster_domain}}"
+                  dex.config: |
+                    connectors:
+                      - type: github
+                        id: github
+                        name: GitHub
+                        config:
+                          clientID: $dex.github.clientID
+                          clientSecret: $dex.github.clientSecret
+                          orgs:
+                          - name: Provi-Engineering
+
 
       destination:
         namespace: '{{values.addonChartRepositoryNamespace}}'
