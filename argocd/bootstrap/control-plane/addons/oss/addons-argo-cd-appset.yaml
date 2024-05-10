@@ -81,7 +81,7 @@ spec:
                     external-dns.alpha.kubernetes.io/set-identifier: "{{metadata.annotations.cluster_name}}"
               configs:
                 cm:
-                  url: "https://argocd.{{eks_cluster_domain}}"
+                  url: "https://argocd.{{metadata.annotations.eks_cluster_domain}}"
                   dex.config: |
                     connectors:
                       - type: github
