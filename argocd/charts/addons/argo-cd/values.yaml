@@ -106,7 +106,6 @@ configs:
       g, Provi-Engineering:DevOps, role:admin
 
   cm:
-    url: https://argocd.${domain}
     dex.config: |
       connectors:
         - type: github

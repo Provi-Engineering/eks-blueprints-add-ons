@@ -80,6 +80,8 @@ spec:
                     external-dns.alpha.kubernetes.io/aws-weight: "{{metadata.annotations.route53_weight}}"
                     external-dns.alpha.kubernetes.io/set-identifier: "{{metadata.annotations.cluster_name}}"
                     foo: bar
+              cm:
+                url: "https://argocd.{{eks_cluster_domain}}"
 
       destination:
         namespace: '{{values.addonChartRepositoryNamespace}}'
