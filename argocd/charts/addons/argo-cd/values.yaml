@@ -79,10 +79,6 @@ configs:
       url: https://helm.datadoghq.com
       name: datadog
       type: helm
-  secret:
-    extra:
-      dex.github.clientID: "${argocd_github_client_id}"
-      dex.github.clientSecret: "${argocd_github_client_secret}"
 
   rbac:
     policy.default: "role:dev"
